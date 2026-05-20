@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Social Setup Runbook · Angels Animals and Akasha</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Allura&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root {
+    --lavender: #E5DCEC;
+    --lavender-soft: #F2EBF6;
+    --cream: #F4ECDC;
+    --ink: #3D2E54;
+    --ink-soft: #6E5E83;
+    --ink-faint: #C9B6D8;
+    --gold-deep: #9D7B2C;
+    --gold-label: #B58F35;
+    --ig: #C13584;
+    --fb: #1877F2;
+    --wa: #25D366;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--lavender);
+    color: var(--ink);
+    font-family: 'Cardo', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 70px 56px;
+    background: var(--lavender-soft);
+    box-shadow: 0 0 60px rgba(61, 46, 84, 0.08);
+  }
+  .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-label); font-weight: 500; }
+  .label-soft { color: var(--ink-soft); }
+  .wordmark { font-family: 'Allura', cursive; color: var(--gold-deep); font-size: 64px; line-height: 1; }
+  h1 { font-size: 46px; line-height: 1.05; margin: 0.4em 0 0.5em; }
+  h2 {
+    font-size: 30px;
+    line-height: 1.15;
+    margin: 2.2em 0 0.5em;
+    border-top: 1px solid var(--ink-faint);
+    padding-top: 1em;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  h2 .icon { width: 36px; height: 36px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: white; font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; }
+  .icon.ig { background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); }
+  .icon.fb { background: var(--fb); }
+  .icon.wa { background: var(--wa); }
+  .icon.gen { background: var(--gold-deep); }
+  h3 { font-size: 22px; margin: 1.4em 0 0.4em; color: var(--ink); }
+  h4 { font-size: 18px; margin: 1.2em 0 0.4em; color: var(--ink); font-weight: 700; }
+  p { margin: 0.55em 0; max-width: 66ch; }
+  strong { font-weight: 700; }
+  em { color: var(--ink-soft); font-style: italic; }
+  ul, ol { margin: 0.7em 0 0.7em 1.5em; }
+  li { margin: 0.35em 0; max-width: 64ch; }
+  code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: var(--cream); padding: 2px 7px; border-radius: 3px; color: var(--ink); }
+  pre { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: var(--cream); border-left: 3px solid var(--gold-deep); padding: 16px 20px; margin: 1em 0; overflow-x: auto; white-space: pre-wrap; line-height: 1.55; }
+  blockquote { border-left: 2px solid var(--gold-deep); padding: 4px 0 4px 20px; margin: 1em 0; font-style: italic; color: var(--ink-soft); max-width: 62ch; }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--ink-faint); vertical-align: top; }
+  th { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-label); font-weight: 500; border-bottom: 2px solid var(--gold-deep); }
+  .gold-rule { width: 80px; height: 2px; background: var(--gold-deep); margin: 16px 0; }
+  .step { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--gold-deep); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1.4em; display: block; }
+  .callout { background: var(--cream); border-left: 3px solid var(--gold-deep); padding: 14px 20px; margin: 1.2em 0; font-size: 15.5px; }
+  .callout strong { color: var(--gold-deep); }
+  .warn { background: #FAEFD9; border-left-color: #B95E20; }
+  .warn strong { color: #B95E20; }
+  .toc { background: rgba(157, 123, 44, 0.04); border: 1px solid var(--ink-faint); padding: 24px 28px; margin: 2em 0; }
+  .toc h3 { margin-top: 0; }
+  .toc ol { margin-left: 1.2em; }
+  .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--gold-deep); }
+  .toc a:hover { color: var(--gold-deep); }
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li { position: relative; padding-left: 32px; margin: 0.5em 0; }
+  .checklist li::before { content: ''; position: absolute; left: 0; top: 0.35em; width: 18px; height: 18px; border: 1.5px solid var(--gold-deep); border-radius: 2px; }
+  hr.sep { border: none; height: 1px; background: var(--ink-faint); margin: 3em 0; }
+  .footer { margin-top: 4em; padding-top: 2em; border-top: 1px solid var(--ink-faint); font-size: 13px; color: var(--ink-soft); text-align: center; }
+  .seal { display: inline-block; border: 1.5px solid var(--gold-deep); border-radius: 50%; width: 80px; height: 80px; text-align: center; line-height: 1; padding-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--gold-deep); transform: rotate(-3deg); }
+  .seal-deva { font-family: 'Cardo', serif; font-size: 24px; margin-bottom: 4px; letter-spacing: 0; }
+  .paste { background: white; border: 1px solid var(--ink-faint); padding: 14px 18px; font-family: 'Cardo', serif; font-size: 15.5px; line-height: 1.55; margin: 0.8em 0; white-space: pre-wrap; border-left: 3px solid var(--gold-deep); }
+  .field-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-label); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .page { box-shadow: none; padding: 0; max-width: none; background: white; }
+    h2 { page-break-before: auto; page-break-after: avoid; }
+    h3, h4 { page-break-after: avoid; }
+    pre, table, .callout, .paste { page-break-inside: avoid; }
+    @page { size: A4 portrait; margin: 18mm 16mm; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 32px;">
+  <div>
+    <p class="label">RUNBOOK · SOCIAL PRESENCE SETUP</p>
+    <p class="wordmark" style="margin-top: 24px;">Angels Animals & Akasha</p>
+    <p class="label label-soft" style="margin-top: 10px;">RUCHITA JOSHI · AHMEDABAD</p>
+  </div>
+  <div class="seal"><div class="seal-deva">संवाद</div>SAṀVĀD</div>
+</div>
+
+<h1>From zero to social-ready</h1>
+<div class="gold-rule"></div>
+<p style="font-size: 19px; color: var(--ink-soft); max-width: 64ch;">
+  Step-by-step setup for Instagram, Facebook, and WhatsApp Business. Every field has the exact text to paste. Every decision is pre-made. Read once, then begin. Total time, ninety minutes.
+</p>
+
+<div class="callout">
+  <strong>What this runbook covers</strong>
+  <ul style="margin: 8px 0 0 1.2em;">
+    <li><strong>Instagram</strong> (account, Business profile, highlights, first three pinned posts)</li>
+    <li><strong>Facebook Page</strong> (required to link with Instagram Business + foundation for Razorpay)</li>
+    <li><strong>WhatsApp Business</strong> (separate from regular WhatsApp; catalog, quick replies, click-to-chat links)</li>
+    <li><strong>Linking them together</strong> (Meta Business Suite, click-to-WhatsApp from Instagram bio)</li>
+    <li><strong>First seven days posting plan</strong></li>
+    <li><strong>Things that will get the account banned in week one</strong></li>
+  </ul>
+</div>
+
+<div class="toc">
+  <h3>Table of contents</h3>
+  <ol>
+    <li><a href="#prep">Prerequisites and decisions to make once</a></li>
+    <li><a href="#ig">Instagram Business setup</a></li>
+    <li><a href="#fb">Facebook Page setup</a></li>
+    <li><a href="#link">Linking Instagram and Facebook through Meta Business Suite</a></li>
+    <li><a href="#wa">WhatsApp Business setup</a></li>
+    <li><a href="#cross">Cross-platform CTAs (click-to-WhatsApp from Instagram, links from website)</a></li>
+    <li><a href="#first7">First seven days posting plan</a></li>
+    <li><a href="#dont">Will-get-you-banned list (don't do these)</a></li>
+    <li><a href="#decisions">Quick decisions Sagar makes once</a></li>
+  </ol>
+</div>
+
+<!-- ====================================================== -->
+<h2 id="prep"><span class="icon gen">0</span>Prerequisites and decisions to make once</h2>
+
+<h3>Documents to gather</h3>
+<ul class="checklist">
+  <li><strong>Ruchita's phone</strong> (+91 99981 17067) — for SMS OTPs across all three platforms</li>
+  <li><strong>Email</strong> <span class="mono">hello@ruchitajoshi.com</span> — for account creation and recovery</li>
+  <li><strong>Personal/secondary email</strong> (Sagar's or a Gmail Ruchita doesn't use for personal life) — Facebook PERSONAL account is required to create a Facebook PAGE; that personal account can be Sagar's, and he transfers Page admin to Ruchita later</li>
+  <li><strong>Profile photo</strong> <span class="mono">social-assets/profile-photo.jpg</span> (1080×1080) — same image used everywhere</li>
+  <li><strong>Highlight covers</strong> <span class="mono">social-assets/highlights/*.png</span> (6 images, 1080×1920) — for Instagram Story Highlights</li>
+  <li><strong>Post images</strong> <span class="mono">social-assets/posts/*.png</span> (14 single-image posts) and <span class="mono">social-assets/carousels/*.png</span> (24 carousel slides) — for the 14-day calendar</li>
+  <li><strong>Password manager</strong> set up to store new passwords (1Password, Bitwarden, or even Apple Keychain)</li>
+</ul>
+
+<h3>One-time decisions to make before starting</h3>
+
+<table>
+  <tr><th>Decision</th><th>Default</th><th>Why</th></tr>
+  <tr>
+    <td>Which email owns the Instagram and Facebook accounts?</td>
+    <td><span class="mono">hello@ruchitajoshi.com</span></td>
+    <td>Practitioner email, survives if Sagar exits the project. Reset emails go here.</td>
+  </tr>
+  <tr>
+    <td>Which phone number does WhatsApp Business use?</td>
+    <td>+91 99981 17067 (her current number)</td>
+    <td>Existing number = clients already have it = continuity. See WhatsApp section for the regular-vs-Business app tradeoff.</td>
+  </tr>
+  <tr>
+    <td>One handle or different handles per platform?</td>
+    <td><strong>One handle:</strong> <span class="mono">@angelsanimalsandakasha</span> on Instagram, <span class="mono">Angels Animals and Akasha</span> on Facebook, same display name on WhatsApp Business.</td>
+    <td>Cross-platform brand consistency. AI engines and humans pattern-match faster.</td>
+  </tr>
+  <tr>
+    <td>Who is the primary admin?</td>
+    <td>Ruchita as owner, Sagar as editor/co-admin</td>
+    <td>Ownership stays with her. Sagar can help operate but doesn't hold the keys.</td>
+  </tr>
+  <tr>
+    <td>Public business address shown on profile?</td>
+    <td>Yes — Shantigram, Ahmedabad. NOT the full street number.</td>
+    <td>City is enough for trust. Full address creates safety issues for a solo practitioner.</td>
+  </tr>
+</table>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="ig"><span class="icon ig">IG</span>Instagram Business setup</h2>
+<p class="label-soft">25 minutes · order matters · do not skip the Business conversion</p>
+
+<span class="step">Step 1 — Create the account</span>
+<ol>
+  <li>Open the Instagram app on Ruchita's phone, OR go to <a href="https://www.instagram.com/accounts/signup/" style="color: var(--gold-deep);">instagram.com/accounts/signup</a></li>
+  <li>Tap <em>Create new account</em></li>
+  <li><strong>Mobile number:</strong> +91 99981 17067 (this gets the OTP)</li>
+  <li><strong>Full name:</strong>
+    <div class="paste">Ruchita Joshi</div>
+  </li>
+  <li><strong>Username:</strong>
+    <div class="paste">angelsanimalsandakasha</div>
+    Confirmed available as of <span class="mono">2026-05-20</span>. Already wired in the site's schema sameAs.
+  </li>
+  <li><strong>Password:</strong> generate via password manager (20+ chars). Save in 1Password/Apple Keychain immediately.</li>
+  <li>Add email <span class="mono">hello@ruchitajoshi.com</span> in profile settings as soon as the account exists (Settings → Personal information → Email address).</li>
+  <li>Verify both phone and email via the codes Instagram sends.</li>
+  <li><strong>Skip</strong> the "Find people you know" / sync contacts step. <strong>Skip</strong> following Instagram's suggested accounts. Empty following list is fine for now.</li>
+</ol>
+
+<span class="step">Step 2 — Switch to Professional Account (Business)</span>
+<ol>
+  <li>Profile → menu (three lines) → <em>Account type and tools</em></li>
+  <li>Tap <em>Switch to professional account</em></li>
+  <li>Read the welcome screen, tap <em>Continue</em></li>
+  <li><strong>Category:</strong> Search for the category. Try in order until Instagram offers a match:
+    <ol>
+      <li><span class="mono">Spiritual practitioner</span></li>
+      <li><span class="mono">Holistic medicine practitioner</span></li>
+      <li><span class="mono">Wellness center</span></li>
+      <li><span class="mono">Education</span> (broad fallback)</li>
+    </ol>
+    Pick the first one Instagram offers.
+  </li>
+  <li>When asked <em>Are you a business?</em> — tap <strong>Business</strong> (not Creator). Business unlocks the contact buttons and the action button.</li>
+  <li>Add business info:
+    <span class="field-label">Email</span>
+    <div class="paste">hello@ruchitajoshi.com</div>
+    <span class="field-label">Phone</span>
+    <div class="paste">+91 99981 17067</div>
+    <span class="field-label">Address</span>
+    <div class="paste">Shantigram, Ahmedabad, Gujarat 382421, India</div>
+    (The address field is optional. Add city + state; skip the full street number.)
+  </li>
+</ol>
+
+<span class="step">Step 3 — Profile setup (the page everyone sees)</span>
+
+<p>Edit Profile (pencil icon on her profile screen). Fill the fields with these exact values:</p>
+
+<span class="field-label">Display name (separate field from username)</span>
+<div class="paste">Angels Animals & Akasha</div>
+
+<span class="field-label">Username (already set in Step 1)</span>
+<div class="paste">angelsanimalsandakasha</div>
+
+<span class="field-label">Pronouns</span>
+<div class="paste">she/her</div>
+<em>(Optional but humanizes the profile. Add if Ruchita is comfortable.)</em>
+
+<span class="field-label">Bio (Instagram limit: 150 characters)</span>
+<div class="paste">Ruchita Joshi · Animal communicator, Akashic Records reader, angel therapist
+Shantigram, Ahmedabad · Hindi, Marathi, English</div>
+<em>(123 characters. Names the practitioner first, three modalities, location, languages. AI-citation friendly.)</em>
+
+<span class="field-label">Website link</span>
+<div class="paste">https://ruchitajoshi.com</div>
+
+<span class="field-label">Profile photo</span>
+<p>Tap profile photo → Upload from device → select <span class="mono">social-assets/profile-photo.jpg</span> (the 1080×1080 brand logo).</p>
+
+<h4>Add the action button "Book"</h4>
+<ol>
+  <li>Edit Profile → <em>Action buttons</em></li>
+  <li>Pick <em>Book Now</em></li>
+  <li>Skip the partner-integration suggestions (OpenTable, Resy, etc.) → tap <em>Use a link instead</em></li>
+  <li>Paste:
+    <div class="paste">https://ruchitajoshi.com/book</div>
+  </li>
+  <li>Tap <em>Done</em>. The "Book" button now appears at the top of her profile.</li>
+</ol>
+
+<span class="step">Step 4 — Story Highlights (6 covers)</span>
+
+<p>Story Highlights are Stories saved permanently to the profile. Setup order matters because Instagram requires the highlight to start from a Story you've already posted in the last 24 hours.</p>
+
+<p><strong>For each of the 6 highlights, do this:</strong></p>
+<ol>
+  <li>Open the Instagram camera (swipe right from feed, or tap the + icon → Story)</li>
+  <li>Tap the photos icon (bottom left) → upload the highlight cover PNG from <span class="mono">social-assets/highlights/</span></li>
+  <li>Skip adding text/stickers (the image is already designed)</li>
+  <li>Tap <em>Your story</em> at the bottom-left to post</li>
+  <li>Wait 10 seconds, then go back to profile → tap your active story → tap <em>Highlight</em> at the bottom right → <em>+ New</em></li>
+  <li>Name the highlight (see table below) → tap <em>Add</em></li>
+  <li>Optional: tap the highlight cover area to upload the SAME image as the highlight cover icon (otherwise IG picks a thumbnail crop)</li>
+</ol>
+
+<table>
+  <tr><th>Cover file</th><th>Highlight name (paste exactly)</th></tr>
+  <tr><td><span class="mono">highlights/01-about.png</span></td><td>About</td></tr>
+  <tr><td><span class="mono">highlights/02-animals.png</span></td><td>Animals</td></tr>
+  <tr><td><span class="mono">highlights/03-rainbow-bridge.png</span></td><td>Rainbow Bridge</td></tr>
+  <tr><td><span class="mono">highlights/04-akashic.png</span></td><td>Akashic</td></tr>
+  <tr><td><span class="mono">highlights/05-soul-letter.png</span></td><td>Soul Letter</td></tr>
+  <tr><td><span class="mono">highlights/06-seva.png</span></td><td>Sai Seva</td></tr>
+</table>
+
+<p>After the 6 highlights are saved, the profile shows a row of branded circles below the bio. Over time, when Ruchita posts new Stories (a session moment, a community dog photo, etc.), she taps the highlight icon on that Story and adds it to the matching highlight.</p>
+
+<span class="step">Step 5 — First three feed posts (pin all three)</span>
+
+<p>To launch the profile with weight, post these three carousels in order. Pin each one to the top so they form a permanent "what this practice is" sequence at the top of her grid.</p>
+
+<table>
+  <tr><th>Order</th><th>Day from calendar</th><th>What it does</th></tr>
+  <tr><td>1st post</td><td>Day 14 — "Six doorways. One channel."</td><td>Wide-angle introduction to all services. Best for a stranger landing on the profile.</td></tr>
+  <tr><td>2nd post</td><td>Day 2 — "A Labrador named Bella came home in 2020."</td><td>The origin. The reason this practice exists.</td></tr>
+  <tr><td>3rd post</td><td>Day 1 — "Five things I will not do."</td><td>The boundaries. The moat. Converts skeptics fast.</td></tr>
+</table>
+
+<h4>How to post a carousel</h4>
+<ol>
+  <li>Tap the + icon → <em>Post</em></li>
+  <li>Tap the icon to switch from single-image to multi-select (looks like overlapping squares, bottom right of the gallery)</li>
+  <li>Select images in order. <strong>The first selected image is the cover.</strong></li>
+  <li>Example for Day 14 (1st post): select <span class="mono">posts/day-14.png</span> first, then <span class="mono">carousels/day-14-slide-2.png</span> through <span class="mono">slide-7.png</span> in order. 7 images total.</li>
+  <li>Tap <em>Next</em>. Skip filters and editing — images are already final.</li>
+  <li>Caption: copy from <span class="mono">docs/04-social-calendar-14-days.html</span> for that day.</li>
+  <li>Hashtags: from same doc, paste in the caption or in the first comment (algorithm-wise, equivalent).</li>
+  <li>Tap <em>Share</em>.</li>
+</ol>
+
+<h4>How to pin a post</h4>
+<ol>
+  <li>Open the posted carousel</li>
+  <li>Tap the three dots (top right of the post) → <em>Pin to your profile</em></li>
+  <li>Instagram allows pinning up to 3 posts.</li>
+</ol>
+
+<div class="callout">
+  <strong>Why pin all three:</strong> a new visitor's first impression is the top three squares of the grid. With these pinned, every visitor sees the full practice (Day 14), the origin (Day 2), and the boundaries (Day 1) before scrolling. That's the entire brand story in nine seconds.
+</div>
+
+<span class="step">Step 6 — Settings hygiene</span>
+
+<p>Quick settings to lock in:</p>
+<ul>
+  <li>Settings → <em>Privacy</em> → <em>Account privacy</em> → keep as <strong>Public</strong> (default). Business accounts cannot be private anyway.</li>
+  <li>Settings → <em>Messages and story replies</em> → <em>Story replies</em> → <strong>Everyone</strong>. (DMs from strangers are your warmest leads.)</li>
+  <li>Settings → <em>Notifications</em> → turn ON: DMs, comments, mentions, story reactions. Turn OFF: like notifications (too noisy).</li>
+  <li>Settings → <em>Saved login info</em> → Save (only on her own phone, not on a shared device).</li>
+  <li>Settings → <em>Two-factor authentication</em> → enable with SMS to +91 99981 17067 (and recovery codes saved in password manager).</li>
+</ul>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="fb"><span class="icon fb">FB</span>Facebook Page setup</h2>
+<p class="label-soft">20 minutes · required before you can link Instagram to Meta Business Suite</p>
+
+<p><strong>Why bother with Facebook?</strong> Two reasons:</p>
+<ol>
+  <li><strong>Linking Instagram Business to a Facebook Page</strong> unlocks Meta Business Suite (the dashboard that lets you schedule posts across both platforms, see unified insights, and respond to DMs from one inbox). Without this link, scheduling tools like Buffer, Later, and Meta's own scheduler don't work properly on Instagram Business.</li>
+  <li><strong>Razorpay and most Indian payment gateways</strong> check for an active Facebook Page during merchant due diligence. Not strictly required, but missing one is a small risk signal.</li>
+</ol>
+
+<div class="callout warn">
+  <strong>Important:</strong> A Facebook PAGE is different from a Facebook personal PROFILE. The Page is the business identity (like a LinkedIn company page). A personal profile must exist first to "own" the Page. If Ruchita doesn't have a personal Facebook profile and doesn't want to create one, Sagar can create the Page using HIS personal profile, then transfer admin to her later.
+</div>
+
+<span class="step">Step 1 — Create the Facebook Page</span>
+<ol>
+  <li>Go to <a href="https://www.facebook.com/pages/create" style="color: var(--gold-deep);">facebook.com/pages/create</a> while logged into the personal profile that will own the Page.</li>
+  <li><strong>Page name:</strong>
+    <div class="paste">Angels Animals and Akasha</div>
+  </li>
+  <li><strong>Category:</strong> start typing one of:
+    <ul>
+      <li><span class="mono">Spiritual</span> (look for "Spiritualist" or "Spiritual Group")</li>
+      <li><span class="mono">Health & wellness website</span></li>
+      <li><span class="mono">Personal coach</span></li>
+    </ul>
+    Pick whichever Facebook offers. Categories can be edited later.
+  </li>
+  <li><strong>Bio (short description):</strong>
+    <div class="paste">A practice in animal communication, Akashic Records reading, and angel therapy. With Ruchita Joshi, from Shantigram, Ahmedabad. Sessions in Hindi, Marathi, and English on Zoom or Google Meet.</div>
+  </li>
+  <li>Tap <em>Create Page</em>.</li>
+</ol>
+
+<span class="step">Step 2 — Page details</span>
+<p>After the Page exists, fill in these fields. On desktop: <em>Manage Page</em> → <em>About</em>. On mobile app: <em>Settings</em> → <em>Page information</em>.</p>
+
+<span class="field-label">Username (Facebook handle)</span>
+<div class="paste">@angelsanimalsandakasha</div>
+<em>If taken, try <span class="mono">@angelsanimalsakasha</span>, otherwise <span class="mono">@angelsanimalsandakasha1</span>.</em>
+
+<span class="field-label">Website</span>
+<div class="paste">https://ruchitajoshi.com</div>
+
+<span class="field-label">Email</span>
+<div class="paste">hello@ruchitajoshi.com</div>
+
+<span class="field-label">Phone</span>
+<div class="paste">+91 99981 17067</div>
+
+<span class="field-label">Business hours</span>
+<div class="paste">Monday to Friday: 10:00 AM – 7:00 PM IST
+Saturday: 10:00 AM – 2:00 PM IST
+Sunday: Closed</div>
+
+<span class="field-label">Service area</span>
+<div class="paste">India (whole country) + international (services delivered online)</div>
+
+<span class="field-label">Long description (About section)</span>
+<div class="paste">Angels Animals and Akasha is the practice of Ruchita Joshi, a certified animal communicator, Akashic Records reader, and angel therapist based in Shantigram, Ahmedabad. Sessions are conducted on Zoom or Google Meet, recorded with consent, in Hindi, Marathi, and English.
+
+Six doorways into the work: a written Soul Letter, a live Animal Communication session for living animals, a Rainbow Bridge reading for animals who have crossed, an Akashic Records reading guided by Archangel Metatron, a Deep Connection combining animal and Akashic readings, and a twenty-one-day Energy Healing protocol.
+
+Trained at Earthwise in animal communication (Pune, 2022) and certified at Ekagrata Pathshala in Akashic Records reading. Devotee of Sai Baba. Six years of practice from Shantigram.
+
+Visit ruchitajoshi.com to read the full practice and to book.</div>
+
+<span class="step">Step 3 — Profile photo and cover photo</span>
+<ul>
+  <li><strong>Profile photo:</strong> upload the same <span class="mono">social-assets/profile-photo.jpg</span> used on Instagram. Brand consistency.</li>
+  <li><strong>Cover photo:</strong> Facebook cover is 820×312 (desktop) or 640×360 (mobile). For now, upload <span class="mono">social-assets/highlights/01-about.png</span> (the प्रश्न cover) — Facebook will crop the centre. We can render a Facebook-specific cover later if needed.</li>
+</ul>
+
+<span class="step">Step 4 — Add a "Book Now" call-to-action button</span>
+<ol>
+  <li>On the Page header, find the button area (usually says <em>+ Add a button</em>)</li>
+  <li>Choose <em>Book with you</em> → <em>Book Now</em> → <em>Link to website</em></li>
+  <li>Paste:
+    <div class="paste">https://ruchitajoshi.com/book</div>
+  </li>
+  <li>Save.</li>
+</ol>
+
+<span class="step">Step 5 — First posts</span>
+<p>Cross-post the same three carousels you pinned on Instagram. Facebook handles carousels natively.</p>
+<ol>
+  <li>From Page → <em>Create post</em> → tap the photo icon → select multiple images.</li>
+  <li>Upload the Day 14 carousel images in order, then Day 2, then Day 1 (3 separate posts).</li>
+  <li>Captions: same as Instagram, copied from <span class="mono">docs/04-social-calendar-14-days.html</span>.</li>
+  <li>Facebook doesn't use hashtags the same way Instagram does — keep 1-2 only.</li>
+</ol>
+
+<div class="callout">
+  <strong>Facebook posting cadence:</strong> 2-3 posts per week is sufficient. Don't try to match Instagram's daily cadence on Facebook. The audience is different and lower-engagement. Save the energy for Instagram and WhatsApp Status.
+</div>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="link"><span class="icon gen">🔗</span>Linking Instagram and Facebook through Meta Business Suite</h2>
+<p class="label-soft">10 minutes · unlocks cross-platform posting and the unified inbox</p>
+
+<p>Meta Business Suite (business.facebook.com) is the dashboard that unifies Instagram + Facebook for business accounts. Linking them lets Ruchita:</p>
+<ul>
+  <li>Schedule posts to both platforms at once</li>
+  <li>See unified analytics</li>
+  <li>Answer DMs from Instagram, Facebook Messenger, AND WhatsApp from a single inbox</li>
+  <li>Run ads later when she's ready (not now)</li>
+</ul>
+
+<span class="step">Step 1 — Open Meta Business Suite</span>
+<ol>
+  <li>Go to <a href="https://business.facebook.com" style="color: var(--gold-deep);">business.facebook.com</a> on a laptop (mobile app exists but desktop is easier for setup)</li>
+  <li>Sign in with the personal Facebook profile that owns the Page</li>
+  <li>On first login, Facebook prompts: "Get started by adding a Page or Account" — pick the Angels Animals and Akasha Page</li>
+</ol>
+
+<span class="step">Step 2 — Link Instagram</span>
+<ol>
+  <li>In Meta Business Suite → left sidebar → <em>Settings</em> (gear icon at the bottom)</li>
+  <li>Under <em>Accounts</em> → <em>Instagram accounts</em> → <em>Add</em></li>
+  <li>Sign in with the Instagram account (username + password)</li>
+  <li>Authorize the connection</li>
+  <li>Confirm the Facebook Page to link with — pick Angels Animals and Akasha</li>
+</ol>
+
+<span class="step">Step 3 — Set up the unified inbox</span>
+<ol>
+  <li>In Meta Business Suite → <em>Inbox</em> (left sidebar)</li>
+  <li>Connect Instagram Direct, Facebook Messenger, and (later) WhatsApp Business</li>
+  <li>Set up automated responses (optional, recommended for after-hours):
+    <p><strong>Instant reply (sends within seconds of any new DM):</strong></p>
+    <div class="paste">Thank you for reaching out. I reply within twelve hours, usually within four. If you message late at night, the morning will be the answer. — Ruchita</div>
+    <p><strong>Away message (sends outside Mon-Fri 10-7 / Sat 10-2 IST):</strong></p>
+    <div class="paste">The practice is closed right now. I will reply when the office reopens, Monday through Friday from 10 AM to 7 PM IST, Saturday until 2 PM. If this is urgent and grief-related, please call iCall on 9152987821 or Vandrevala Foundation on 1860-2662-345 — both are free and confidential, all hours.</div>
+  </li>
+</ol>
+
+<span class="step">Step 4 — Set up post scheduling</span>
+<ol>
+  <li>In Meta Business Suite → <em>Posts &amp; stories</em> → <em>Create post</em></li>
+  <li>On the right, tick BOTH <em>Instagram</em> and <em>Facebook Page</em></li>
+  <li>Upload the images, paste the caption, choose schedule time (e.g., 9:00 AM IST)</li>
+  <li>Repeat for each day of the calendar — this lets Sagar/Ruchita batch-schedule the entire 14 days in one Saturday morning sitting</li>
+</ol>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="wa"><span class="icon wa">WA</span>WhatsApp Business setup</h2>
+<p class="label-soft">15 minutes · separate app from regular WhatsApp · same number is fine</p>
+
+<h3>WhatsApp vs WhatsApp Business — which one?</h3>
+
+<table>
+  <tr><th></th><th>Regular WhatsApp</th><th>WhatsApp Business</th></tr>
+  <tr><td>Cost</td><td>Free</td><td>Free</td></tr>
+  <tr><td>Catalogue (list of services with photos and prices)</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Greeting message (auto-sent when someone messages first time)</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Away message (auto-sent outside working hours)</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Quick replies (templates Ruchita can send with one tap)</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Labels (tag chats: "new client", "Rainbow Bridge waitlist", etc.)</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Business profile (hours, address, website on the chat header)</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Click-to-chat link from Instagram / Facebook / website</td><td>Limited (wa.me link works but no business profile shows)</td><td>Full</td></tr>
+</table>
+
+<p><strong>Use WhatsApp Business.</strong> All the practitioner features are in Business; regular WhatsApp loses them.</p>
+
+<div class="callout warn">
+  <strong>Same-number consideration:</strong> WhatsApp Business and regular WhatsApp cannot run on the same number on the same device at the same time. Installing WhatsApp Business and registering with +91 99981 17067 will replace regular WhatsApp on that device for that number. <strong>Three options:</strong>
+  <ol style="margin: 8px 0 0 1.2em;">
+    <li><strong>Migrate +91 99981 17067 to WhatsApp Business.</strong> Best for Ruchita's setup — her personal and practice WhatsApp are already the same number, so nothing changes for her clients. Recommended.</li>
+    <li><strong>Get a separate phone number</strong> (a second SIM, an eSIM, or a Jio business number) for the practice. Use Business app with the new number, keep regular WhatsApp on her existing number. Adds complexity.</li>
+    <li><strong>Two-device setup.</strong> Use Business on a secondary phone (an old phone she has lying around) with the same number — WhatsApp Multi-Device. Possible but fiddly.</li>
+  </ol>
+  Default decision: <strong>Option 1 — migrate</strong> her single number to WhatsApp Business. All her existing chat history transfers automatically.
+</div>
+
+<span class="step">Step 1 — Install WhatsApp Business and migrate</span>
+<ol>
+  <li>On Ruchita's phone, open the App Store or Play Store</li>
+  <li>Search "WhatsApp Business" (different app from "WhatsApp Messenger")</li>
+  <li>Install</li>
+  <li>Open it. It will detect that WhatsApp is already installed with +91 99981 17067 and offer to MIGRATE everything (chats, media, contacts) — accept</li>
+  <li>Verify with SMS OTP</li>
+  <li>The original WhatsApp app on her phone will deactivate (her number is now on Business). She can either uninstall regular WhatsApp or leave it (it'll just sit unused)</li>
+</ol>
+
+<span class="step">Step 2 — Business profile</span>
+<p>Settings → Business tools → Business profile. Fill in:</p>
+
+<span class="field-label">Business name (cannot be changed after setup — choose carefully)</span>
+<div class="paste">Angels Animals and Akasha</div>
+
+<span class="field-label">Category</span>
+<div class="paste">Spiritual Counseling</div>
+<em>If unavailable, try "Personal Coach" or "Health/Beauty/Personal Service".</em>
+
+<span class="field-label">Description</span>
+<div class="paste">Ruchita Joshi · Animal communicator, Akashic Records reader, angel therapist. Shantigram, Ahmedabad. Sessions on Zoom or Google Meet, in Hindi, Marathi, and English. Visit ruchitajoshi.com to book.</div>
+
+<span class="field-label">Address</span>
+<div class="paste">Shantigram, Ahmedabad, Gujarat 382421, India</div>
+
+<span class="field-label">Hours</span>
+<div class="paste">Monday to Friday: 10:00 AM – 7:00 PM
+Saturday: 10:00 AM – 2:00 PM
+Sunday: Closed</div>
+
+<span class="field-label">Website</span>
+<div class="paste">https://ruchitajoshi.com</div>
+
+<span class="field-label">Email</span>
+<div class="paste">hello@ruchitajoshi.com</div>
+
+<span class="field-label">Profile photo</span>
+<p>Same <span class="mono">social-assets/profile-photo.jpg</span>.</p>
+
+<span class="step">Step 3 — Greeting message (auto-replies to first-time messagers)</span>
+<ol>
+  <li>Settings → Business tools → Greeting message → toggle ON</li>
+  <li>Recipients: <em>Everyone not in my contact book</em> (new people, not existing chats)</li>
+  <li>Message:
+    <div class="paste">Hello. Thank you for reaching out.
+
+I am Ruchita Joshi, an animal communicator, Akashic Records reader, and angel therapist based in Ahmedabad. I reply within twelve hours, usually within four.
+
+Please tell me, in two or three sentences, what brought you here. If you would like to book a session, the full details and pricing are at ruchitajoshi.com.
+
+If you are in a mental health crisis, please call iCall on 9152987821 or Vandrevala Foundation on 1860-2662-345 first. Both are free and confidential, all hours.</div>
+  </li>
+</ol>
+
+<span class="step">Step 4 — Away message (outside working hours)</span>
+<ol>
+  <li>Settings → Business tools → Away message → toggle ON</li>
+  <li>Schedule: <em>Outside of business hours</em> (uses the hours set in profile)</li>
+  <li>Recipients: <em>Everyone</em></li>
+  <li>Message:
+    <div class="paste">The practice is closed right now. I will reply when the office reopens, Monday through Friday from 10 AM to 7 PM IST, Saturday until 2 PM. If this is grief and urgent, please call iCall (9152987821) or Vandrevala Foundation (1860-2662-345) first. Both are free and confidential, all hours. — Ruchita</div>
+  </li>
+</ol>
+
+<span class="step">Step 5 — Quick Replies (templates for common questions)</span>
+<p>Settings → Business tools → Quick replies → Add. Each Quick Reply has a shortcut (typed as /word) that expands to the full text. Suggested set:</p>
+
+<table>
+  <tr><th>Shortcut</th><th>Title</th><th>Message text</th></tr>
+  <tr>
+    <td><span class="mono">/book</span></td>
+    <td>How to book</td>
+    <td>You can book any session on https://ruchitajoshi.com/book. Pricing and full descriptions are on each session's page. If you tell me which doorway you're drawn to, I can guide you faster.</td>
+  </tr>
+  <tr>
+    <td><span class="mono">/pay</span></td>
+    <td>How payment works</td>
+    <td>Indian clients pay in INR through UPI or GPay. International clients pay in USD through PayPal or Wise. I send the link or QR after we agree on the slot. Verification is manual and I confirm within four hours.</td>
+  </tr>
+  <tr>
+    <td><span class="mono">/rainbow</span></td>
+    <td>Rainbow Bridge intro</td>
+    <td>A Rainbow Bridge reading is a sixty-minute session for an animal who has crossed. The connection does not end at the body. Most people come carrying one question they could not ask while their animal was here. That question is welcome. Full details: https://ruchitajoshi.com/services/rainbow-bridge</td>
+  </tr>
+  <tr>
+    <td><span class="mono">/akashic</span></td>
+    <td>Akashic intro</td>
+    <td>An Akashic Records reading is a seventy-five-minute session in which I open your soul's record using the Pathway Prayer Process, guided by Archangel Metatron. You bring six questions, I read what is shown. Full details: https://ruchitajoshi.com/services/akashic-records</td>
+  </tr>
+  <tr>
+    <td><span class="mono">/letter</span></td>
+    <td>Soul Letter intro</td>
+    <td>The Soul Letter is the lowest threshold I offer. You send me your questions in writing, I sit with them and write you back a long letter you can return to. ₹2,222. No live session needed. Full details: https://ruchitajoshi.com/services/soul-letter</td>
+  </tr>
+  <tr>
+    <td><span class="mono">/crisis</span></td>
+    <td>Crisis support</td>
+    <td>If you are in a mental health crisis right now, please reach iCall on 9152987821 or Vandrevala Foundation on 1860-2662-345 first. Both are free and confidential, all hours. I am not a crisis service but I will be here after.</td>
+  </tr>
+  <tr>
+    <td><span class="mono">/hours</span></td>
+    <td>Working hours</td>
+    <td>My working hours are Monday to Friday 10 AM to 7 PM IST, Saturday 10 AM to 2 PM. Sunday closed. I reply to messages within twelve hours.</td>
+  </tr>
+</table>
+
+<p>To use a Quick Reply in a chat: type the shortcut (e.g. <span class="mono">/book</span>) and tap the suggested expansion. The full text drops in.</p>
+
+<span class="step">Step 6 — Labels (organize chats)</span>
+<p>Settings → Business tools → Labels. Default labels are fine; rename or add as needed. Suggested labels for Ruchita's practice:</p>
+<ul>
+  <li><strong>New</strong> — first-time enquiry, not yet booked</li>
+  <li><strong>Booked</strong> — session confirmed and paid</li>
+  <li><strong>Waitlist Rainbow Bridge</strong> — wants a Rainbow Bridge session but not yet booked</li>
+  <li><strong>Waitlist Akashic</strong> — same, for Akashic Records</li>
+  <li><strong>Follow up</strong> — sent a session summary, awaiting response</li>
+  <li><strong>Energy Healing</strong> — in active 21-day protocol</li>
+  <li><strong>Closed</strong> — session done, no follow-up needed</li>
+</ul>
+<p>To label a chat: long-press the chat in the inbox → tap the label icon → pick or create.</p>
+
+<span class="step">Step 7 — Catalog (services with prices)</span>
+<ol>
+  <li>Settings → Business tools → Catalog → <em>Add new item</em></li>
+  <li>For each of the six services, add an item:</li>
+</ol>
+
+<table>
+  <tr><th>Service</th><th>Price</th><th>Description (paste)</th></tr>
+  <tr>
+    <td>Soul Letter</td>
+    <td>₹2,222</td>
+    <td>A written reading you can return to. The lowest threshold I offer. You send your questions, I write you back in a long letter.</td>
+  </tr>
+  <tr>
+    <td>Animal Communication</td>
+    <td>₹3,333</td>
+    <td>A sixty-minute live session for a living animal. I tune to their frequency using the hollow bone protocol learned at Earthwise.</td>
+  </tr>
+  <tr>
+    <td>Rainbow Bridge Reading</td>
+    <td>₹3,999</td>
+    <td>A sixty-minute reading for an animal who has crossed. The connection does not end at the body.</td>
+  </tr>
+  <tr>
+    <td>Akashic Records Reading</td>
+    <td>₹4,999</td>
+    <td>A seventy-five-minute reading from this lifetime's book, guided by Archangel Metatron via the Pathway Prayer Process.</td>
+  </tr>
+  <tr>
+    <td>Deep Connection</td>
+    <td>₹6,999</td>
+    <td>A ninety-minute combined session: animal communication and an Akashic reading together.</td>
+  </tr>
+  <tr>
+    <td>Energy Healing</td>
+    <td>By conversation</td>
+    <td>A twenty-one-day archangel-guided healing protocol. Custom-built after a short conversation. By appointment.</td>
+  </tr>
+</table>
+
+<p>Use the post images from <span class="mono">social-assets/posts/</span> as the catalog item photos (day-02 for Animal Communication, day-04 for Rainbow Bridge, etc.).</p>
+
+<p>Once the catalog is set up, clients can browse Ruchita's services right inside the WhatsApp chat (tap the paperclip icon → Catalog).</p>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="cross"><span class="icon gen">↔</span>Cross-platform CTAs and linking</h2>
+
+<h3>1. Click-to-WhatsApp link from Instagram bio</h3>
+
+<p>Instagram allows only one website link in the bio. We've set it to <span class="mono">ruchitajoshi.com</span>. But Ruchita can add a <strong>click-to-WhatsApp</strong> link as a SECOND visible link via the action button:</p>
+
+<ol>
+  <li>Instagram → Edit Profile → Action buttons</li>
+  <li>Add another button (alongside "Book Now"):
+    <ul>
+      <li>Type: <em>Contact</em> → <em>WhatsApp</em></li>
+      <li>Or, if Instagram doesn't offer native WhatsApp linking, add a Link Sticker in Stories with this URL:
+        <div class="paste">https://wa.me/919998117067?text=Hi%20Ruchita%2C%20I%20found%20you%20through%20your%20Instagram.</div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3>2. WhatsApp click-to-chat link for sharing</h3>
+
+<p>This URL opens a WhatsApp chat with Ruchita with a pre-filled message:</p>
+<div class="paste">https://wa.me/919998117067?text=Hi%20Ruchita%2C%20I%20found%20you%20through%20your%20website.</div>
+
+<p>Use this on:</p>
+<ul>
+  <li>The website (already wired in the footer + contact page)</li>
+  <li>Email signatures</li>
+  <li>Instagram bio (if she wants to use the bio link for WhatsApp instead of the website occasionally)</li>
+  <li>Business cards / printed materials</li>
+</ul>
+
+<h3>3. Instagram bio link rotation</h3>
+
+<p>Instagram allows ONE link. To handle multiple destinations (website, WhatsApp, specific service page, latest blog post), use either:</p>
+
+<ul>
+  <li><strong>Linktree</strong> (free, easy) — creates a landing page with multiple buttons. Drawback: extra friction (one tap becomes two), Linktree branding visible on the page</li>
+  <li><strong>Native Instagram action button + bio website</strong> (recommended) — primary link goes to <span class="mono">ruchitajoshi.com</span>, action button goes to <span class="mono">ruchitajoshi.com/book</span>. Both visible above the bio. No third-party page.</li>
+</ul>
+
+<p>Default choice: <strong>native, no Linktree</strong>. Less friction. Brand stays on Ruchita's own domain.</p>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="first7"><span class="icon gen">📅</span>First seven days posting plan</h2>
+
+<p>Don't post everything on day 1. Instagram's algorithm rewards consistent daily presence over week 1, not burst-then-silence.</p>
+
+<table>
+  <tr><th>Day</th><th>Instagram</th><th>Facebook Page</th><th>WhatsApp Status</th></tr>
+  <tr>
+    <td>Day 1 (launch day)</td>
+    <td>Post Day 14 carousel (Six doorways), PIN to profile. Post 6 Story Highlight covers as Stories → save each to a Highlight.</td>
+    <td>Cross-post the Day 14 carousel.</td>
+    <td>Post the launch announcement: "The practice is online at ruchitajoshi.com. Sessions in Hindi, Marathi, English."</td>
+  </tr>
+  <tr>
+    <td>Day 2</td>
+    <td>Post Day 2 carousel (Bella), PIN to profile.</td>
+    <td>—</td>
+    <td>Voice note: the 2020 Bella story (Day 2 calendar).</td>
+  </tr>
+  <tr>
+    <td>Day 3</td>
+    <td>Post Day 1 carousel (Five boundaries), PIN. Profile now has 3 pinned posts.</td>
+    <td>Cross-post Day 2 (Bella).</td>
+    <td>The three boundary statements (Day 1 calendar status sequence).</td>
+  </tr>
+  <tr>
+    <td>Day 4</td>
+    <td>Post Day 3 carousel (Akashic vs Soul Letter).</td>
+    <td>—</td>
+    <td>Day 3 calendar status.</td>
+  </tr>
+  <tr>
+    <td>Day 5</td>
+    <td>Post Day 4 (Not anger, never anger).</td>
+    <td>Cross-post Day 1 (Five boundaries).</td>
+    <td>Day 4 calendar status.</td>
+  </tr>
+  <tr>
+    <td>Day 6</td>
+    <td>Post Day 5 carousel (Six questions).</td>
+    <td>—</td>
+    <td>Day 5 calendar status.</td>
+  </tr>
+  <tr>
+    <td>Day 7</td>
+    <td>Post Day 6 (Smell from a particular room).</td>
+    <td>Cross-post Day 4 (Not anger).</td>
+    <td>Day 6 calendar status (atmospheric, short).</td>
+  </tr>
+</table>
+
+<p>From Day 8 onward, continue with the calendar's Days 7-14. Facebook cadence stays at 2-3 per week. WhatsApp Status stays daily.</p>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="dont"><span class="icon gen">⚠</span>Will-get-you-banned list</h2>
+
+<p>These behaviours flag new accounts for shadow-bans, demotion, or outright suspension. Avoid all of them in week one:</p>
+
+<ol>
+  <li><strong>Mass-follow.</strong> Following more than 50 accounts in a single day on a brand-new profile triggers Instagram's automation flag. Spread out follows. Target 10-20/day max for the first month.</li>
+  <li><strong>Follow / unfollow cycles.</strong> Following someone, waiting for them to follow back, then unfollowing — instant shadow-ban if detected.</li>
+  <li><strong>Bot tools and engagement pods.</strong> Anything that automates likes/follows/comments. Instagram has gotten extremely good at detecting these. Lifetime ban risk on the account.</li>
+  <li><strong>Buying followers.</strong> Bought followers are bots with no engagement → Instagram sees a high follower count with low engagement-per-follower ratio and assumes the account is inauthentic → suppresses reach to real followers too.</li>
+  <li><strong>Identical captions across posts.</strong> Posting the same caption multiple times triggers spam flags. Each post needs a unique caption.</li>
+  <li><strong>30 hashtags per post.</strong> Instagram now flags hashtag-stuffing (more than 15). Use 5-10 specific hashtags per post.</li>
+  <li><strong>Paid ads in week one.</strong> Meta's ad delivery models perform terribly on accounts with no organic engagement signal. Wait 30 days before running ads.</li>
+  <li><strong>Identical content cross-posted unedited.</strong> If you post the same image and caption on Instagram and Facebook within 60 seconds, Meta detects and demotes both. Stagger by 1-2 hours, OR change one element (caption, hashtags).</li>
+  <li><strong>Auto-DM bots welcoming new followers.</strong> Bans common in 2024-2026. Send personal welcomes by hand for the first 100 followers, then re-evaluate.</li>
+  <li><strong>Reposting other people's content without credit.</strong> Even with credit, repost-only profiles get suppressed. Original content only for at least the first six months.</li>
+  <li><strong>Adding banned hashtags.</strong> Some hashtags are "shadow-banned" by Instagram (no posts using them appear in searches). Avoid #spirituality (often flagged), #psychic, #astrology, #reading. Use specific ones: #AkashicRecords, #AnimalCommunicator, #RainbowBridge.</li>
+  <li><strong>Logging in from multiple locations rapidly.</strong> If Ruchita's account is logged in from Ahmedabad and someone (Sagar) also logs in from a different city minutes later, Instagram flags it as a hack attempt. Coordinate logins, or only Sagar uses Meta Business Suite, not the IG app itself.</li>
+</ol>
+
+<hr class="sep">
+
+<!-- ====================================================== -->
+<h2 id="decisions"><span class="icon gen">✓</span>Quick decisions Sagar makes once</h2>
+
+<table>
+  <tr><th>Decision</th><th>Default</th></tr>
+  <tr><td>Instagram handle</td><td><span class="mono">@angelsanimalsandakasha</span></td></tr>
+  <tr><td>Facebook Page name + handle</td><td>"Angels Animals and Akasha" + <span class="mono">@angelsanimalsandakasha</span></td></tr>
+  <tr><td>WhatsApp Business number</td><td>+91 99981 17067 (migrate existing)</td></tr>
+  <tr><td>Account owner email</td><td><span class="mono">hello@ruchitajoshi.com</span></td></tr>
+  <tr><td>Action button on Instagram</td><td>Book Now → <span class="mono">ruchitajoshi.com/book</span></td></tr>
+  <tr><td>Bio (Instagram)</td><td>Option A (the credentialed two-line version above)</td></tr>
+  <tr><td>First 3 pinned posts</td><td>Day 14, Day 2, Day 1 (in that order)</td></tr>
+  <tr><td>Highlight cover style</td><td>Devanagari + English label (already rendered)</td></tr>
+  <tr><td>Facebook posting cadence</td><td>2-3 per week (NOT daily)</td></tr>
+  <tr><td>WhatsApp Status cadence</td><td>1 per day, every day</td></tr>
+  <tr><td>Auto-replies on WhatsApp</td><td>Greeting message + Away message both ON</td></tr>
+  <tr><td>Quick Replies on WhatsApp</td><td>7 shortcuts (book / pay / rainbow / akashic / letter / crisis / hours)</td></tr>
+  <tr><td>Catalog on WhatsApp</td><td>All six services with descriptions and prices</td></tr>
+  <tr><td>Linktree?</td><td>No — native action button + bio link only</td></tr>
+  <tr><td>Two-factor authentication</td><td>ON for both Instagram and Facebook</td></tr>
+  <tr><td>Recovery codes</td><td>Saved in 1Password / Apple Keychain / printed on paper in a safe place</td></tr>
+  <tr><td>Schema link verification</td><td>After setup, the existing <span class="mono">Person.sameAs</span> + <span class="mono">Organization.sameAs</span> links on the site will resolve to live profiles. AI engines see a coherent entity graph for the first time.</td></tr>
+</table>
+
+<div class="callout">
+  <strong>One more thing — Meta Verified (optional, not now).</strong> Meta sells a paid "blue tick" verification for ~₹600/month per platform. It is genuinely useful for a public-facing practitioner (lower spam, faster reach, account protection if hacked). But it requires a government ID match. Skip for now; revisit after 3 months of organic growth.
+</div>
+
+<div class="footer">
+  <p>Three-platform social setup runbook for Angels Animals and Akasha. Each field has the exact value to paste. Each decision is pre-made. The accompanying social calendar at <span class="mono">docs/04-social-calendar-14-days.html</span> provides the daily content. Visual assets are in <span class="mono">social-assets/</span>.</p>
+  <p style="margin-top: 1em;">Prepared by Sagar Sutaria · QuantaLynk · 2026-05-20</p>
+</div>
+
+</div>
+</body>
+</html>
