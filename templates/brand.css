@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Allura&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --lavender: #E5DCEC;
+  --lavender-deep: #C9B6D8;
+  --cream: #F4ECDC;
+  --ink: #3D2E54;
+  --ink-soft: #6E5E83;
+  --gold-deep: #9D7B2C;
+  --gold-label: #B58F35;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow: hidden; }
+body {
+  background: var(--lavender);
+  color: var(--ink);
+  font-family: 'Cardo', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image:
+    radial-gradient(circle at 70% 30%, rgba(244, 236, 220, 0.4), transparent 60%),
+    radial-gradient(circle at 20% 85%, rgba(157, 123, 44, 0.05), transparent 50%),
+    linear-gradient(135deg, #E5DCEC 0%, #DCC9E8 100%);
+  position: relative;
+}
+
+.label {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-label);
+  font-weight: 500;
+}
+
+.label-soft { color: var(--ink-soft); letter-spacing: 0.18em; }
+
+.gold-rule {
+  background: var(--gold-deep);
+}
+
+.bottom-mark {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.top-mark {
+  position: absolute;
+  top: 50px;
+  left: 60px;
+  font-family: 'Allura', cursive;
+  font-size: 36px;
+  color: var(--gold-deep);
+}
+
+/* HIGHLIGHT cover (1080x1920) */
+.highlight {
+  width: 1080px;
+  height: 1920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 80px;
+}
+.highlight .deva {
+  font-family: 'Cardo', serif;
+  font-size: 360px;
+  line-height: 1;
+  color: var(--gold-deep);
+  margin-bottom: 60px;
+}
+.highlight .english {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 38px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: center;
+}
+.highlight .english-rule {
+  width: 80px;
+  height: 2px;
+  background: var(--gold-deep);
+  margin: 40px auto;
+}
+
+/* POST quote graphic (1080x1350) */
+.post {
+  width: 1080px;
+  height: 1350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 100px 80px;
+}
+.post .post-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-label);
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+.post .thesis {
+  font-family: 'Cardo', serif;
+  font-size: 72px;
+  line-height: 1.12;
+  color: var(--ink);
+  font-weight: 400;
+}
+.post .thesis.lg { font-size: 84px; }
+.post .thesis.sm { font-size: 60px; }
+.post .subline {
+  font-family: 'Cardo', serif;
+  font-size: 40px;
+  line-height: 1.3;
+  color: var(--ink-soft);
+  margin-top: 36px;
+  font-style: italic;
+}
+.post .thesis-rule {
+  width: 80px;
+  height: 2px;
+  background: var(--gold-deep);
+  margin: 32px 0;
+}
+
+/* Bottom marks for posts */
+.post-bottom {
+  position: absolute;
+  bottom: 60px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.post-top {
+  position: absolute;
+  top: 60px;
+  left: 80px;
+  font-family: 'Allura', cursive;
+  font-size: 44px;
+  color: var(--gold-deep);
+}
+.post-seal {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 110px;
+  height: 110px;
+  border: 1.5px solid var(--gold-deep);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-3deg);
+}
+.post-seal-deva {
+  font-family: 'Cardo', serif;
+  font-size: 30px;
+  color: var(--gold-deep);
+}
+.post-seal-en {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--gold-deep);
+  margin-top: 2px;
+}
+
+/* Carousel body slide variants (1080x1350) */
+.body-numbered {
+  width: 1080px;
+  height: 1350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 100px 80px;
+}
+.body-numbered .num {
+  font-family: 'Cardo', serif;
+  font-size: 380px;
+  line-height: 0.85;
+  color: var(--gold-deep);
+  opacity: 0.18;
+  position: absolute;
+  top: 80px;
+  right: 80px;
+  font-style: italic;
+}
+.body-numbered .num-word {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-label);
+  font-weight: 500;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+.body-numbered .heading {
+  font-family: 'Cardo', serif;
+  font-size: 76px;
+  line-height: 1.12;
+  color: var(--ink);
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+.body-numbered .heading.sm { font-size: 60px; }
+.body-numbered .body-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--gold-deep);
+  margin: 28px 0;
+  position: relative;
+  z-index: 2;
+}
+.body-numbered .body-text {
+  font-family: 'Cardo', serif;
+  font-size: 36px;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+/* Comparison slide variant — single concept centred */
+.body-concept {
+  width: 1080px;
+  height: 1350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 140px 100px;
+}
+.body-concept .concept-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-label);
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+.body-concept .concept-name {
+  font-family: 'Cardo', serif;
+  font-size: 96px;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.body-concept .concept-tag {
+  font-family: 'Cardo', serif;
+  font-style: italic;
+  font-size: 36px;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+.body-concept .concept-rule {
+  width: 80px;
+  height: 2px;
+  background: var(--gold-deep);
+  margin: 12px 0 40px;
+}
+.body-concept .concept-body {
+  font-family: 'Cardo', serif;
+  font-size: 36px;
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 760px;
+}
+
+/* Question-only slide (large quote) */
+.body-question {
+  width: 1080px;
+  height: 1350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 160px 100px;
+}
+.body-question .q-mark {
+  font-family: 'Cardo', serif;
+  font-size: 200px;
+  line-height: 0.7;
+  color: var(--gold-deep);
+  opacity: 0.4;
+  margin-bottom: 24px;
+}
+.body-question .q-text {
+  font-family: 'Cardo', serif;
+  font-style: italic;
+  font-size: 72px;
+  line-height: 1.18;
+  color: var(--ink);
+  max-width: 880px;
+}
+.body-question .q-text.sm { font-size: 60px; }
+
